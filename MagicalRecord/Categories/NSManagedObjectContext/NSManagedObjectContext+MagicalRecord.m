@@ -84,10 +84,12 @@ static NSManagedObjectContext *defaultManagedObjectContext_ = nil;
         
         [self MR_setRootSavingContext:rootContext];
         
-        NSManagedObjectContext *defaultContext = [self MR_newMainQueueContext];
-        [defaultContext setParentContext:rootSavingContext];
+//        NSManagedObjectContext *defaultContext = [self MR_newMainQueueContext];
+//        [defaultContext setParentContext:rootSavingContext];
 
-        [self MR_setDefaultContext:defaultContext];
+        //Arie Modification - I have removed the background context here for now
+        //#warning modification
+        [self MR_setDefaultContext:/*defaultContext*/ rootContext];
     }
 }
 
