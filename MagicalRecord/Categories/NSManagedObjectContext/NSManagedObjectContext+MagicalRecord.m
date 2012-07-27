@@ -106,7 +106,8 @@ static NSManagedObjectContext *defaultManagedObjectContext_ = nil;
 
 + (NSManagedObjectContext *) MR_contextWithoutParent;
 {
-    NSManagedObjectContext *context = [[self alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+    //Arie modification - changed concurrency type from main quere to prevent crashes with undo manager
+    NSManagedObjectContext *context = [[self alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
     return context;
 }
 
@@ -144,6 +145,7 @@ static NSManagedObjectContext *defaultManagedObjectContext_ = nil;
     if (coordinator != nil)
 	{
         context = [self MR_contextWithoutParent];
+        
         [context performBlockAndWait:^{
             [context setPersistentStoreCoordinator:coordinator];
         }];
