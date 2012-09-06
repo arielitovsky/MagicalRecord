@@ -106,7 +106,7 @@ static NSManagedObjectContext *defaultManagedObjectContext_ = nil;
 
 + (NSManagedObjectContext *) MR_contextWithoutParent;
 {
-    //Arie modification - changed concurrency type from main quere to prevent crashes with undo manager
+    //Arie modification - changed concurrency type to main queue (from private queue) to prevent crashes with undo manager
     NSManagedObjectContext *context = [[self alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
     return context;
 }
